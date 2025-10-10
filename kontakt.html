@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Kontakt — Westlake Talent Bridge UG</title>
+	<link rel="icon" href="./img/logo-monogram.jpeg" />
+	<link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+	<header class="site-header">
+		<div class="container">
+			<a href="/" class="logo" aria-label="Westlake Talent Bridge UG">
+				<img src="./img/logo-top.jpeg" alt="Westlake Talent Bridge UG" />
+			</a>
+			<nav id="nav" class="nav" aria-label="Hauptnavigation">
+				<ul class="nav__list">
+					<li><a href="/ueber-uns.html">Über uns</a></li>
+					<li><a href="/hotline.html">24/7 Hotline</a></li>
+					<li><a href="/kontakt.html" class="active">Kontakt</a></li>
+				</ul>
+			</nav>
+			<button id="burger" class="burger" aria-label="Menü öffnen" aria-controls="nav" aria-expanded="false">
+				<span></span><span></span><span></span>
+			</button>
+		</div>
+	</header>
+
+	<main>
+		<section class="section fade-in">
+			<div class="container">
+				<h1>Kontaktieren Sie uns</h1>
+				<p>Westlake Talent Bridge UG<br>Musterstraße 1, 04109 Leipzig</p>
+				<p>Telefon: +49 123 456789<br>E‑Mail: info@westlake-talent.de</p>
+
+				<form id="contact-form" class="contact-form">
+					<div class="form-row">
+						<label>Ihr Name*
+							<input type="text" name="name" required />
+						</label>
+						<label>E‑Mail*
+							<input type="email" name="email" required />
+						</label>
+					</div>
+					<label>Nachricht
+						<textarea name="message" rows="6"></textarea>
+					</label>
+					<button type="submit" class="btn">Senden</button>
+				</form>
+
+				<div class="map-placeholder">
+					<iframe title="Karte" src="https://www.google.com/maps?q=Leipzig&output=embed" loading="lazy"></iframe>
+				</div>
+
+				<p>Wir freuen uns auf Ihre Nachricht.</p>
+			</div>
+		</section>
+	</main>
+
+	<footer class="site-footer fade-in">
+		<div class="container">
+			<p class="copy">© <span id="year"></span> Westlake Talent Bridge UG</p>
+		</div>
+	</footer>
+
+	<script src="./js/scripts.js"></script>
+</body>
+</html>
+

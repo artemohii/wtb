@@ -1,0 +1,42 @@
+/* Locations Section */
+.locations-section {
+  padding: 60px 0;
+  background: $color-primary;
+}
+
+.locations-section__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.locations-section__title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #D5CEA3;
+  margin-bottom: 40px;
+}
+
+.locations-section__map {
+  margin-bottom: 40px;
+}
+
+.locations-section__list {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.location-item {
+  background: rgba(26, 18, 11, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  color: #D5CEA3;
+}
+
+.location-item h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}

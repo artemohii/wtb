@@ -1,0 +1,39 @@
+.about-section {
+  cursor: default;
+  padding: 60px 0;
+  /* background: $color-primary; */
+  background:  linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("./img/mafe.jpg") no-repeat center center;
+  /* filter: brightness(50%); */
+  background-size: cover;
+  background-attachment: fixed;
+background-position: center 10%;
+
+}
+
+.about-section__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  /* background-color: rgba(30, 30, 30, 0.9	); */
+
+}
+
+.about-section__title {
+  
+  text-align: center;
+  font-size: 3rem;
+  color: #D5CEA3;
+  margin-bottom: 40px;
+}
+
+.about-section__content {
+  color: #D5CEA3;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.5rem;
+}
+
+.about-section__content p {
+  margin-bottom: 20px;
+}
