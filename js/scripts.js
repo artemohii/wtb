@@ -58,6 +58,25 @@ document.addEventListener('DOMContentLoaded', function(){
 
   document.querySelectorAll('.fade-in, .slide-up, section').forEach(el => observer.observe(el));
 
+  // Parallax effect for Akademie section
+  const akademieSection = document.querySelector('.section-akademie');
+  if (akademieSection && window.innerWidth >= 768) {
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      const akademieBg = akademieSection.querySelector('.akademie-content');
+      if (akademieBg) {
+        const sectionTop = akademieSection.offsetTop;
+        const sectionHeight = akademieSection.offsetHeight;
+        
+        if (scrolled > sectionTop - window.innerHeight && scrolled < sectionTop + sectionHeight) {
+          const parallaxSpeed = 0.5; // 50% скорости прокрутки
+          const yPos = (scrolled - sectionTop) * parallaxSpeed;
+          akademieSection.style.setProperty('--parallax-y', yPos + 'px');
+        }
+      }
+    });
+  }
+
   // Animated counters in hero stats
   const counters = document.querySelectorAll('.stat-number');
   let animated = false;
