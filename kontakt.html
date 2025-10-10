@@ -3,15 +3,28 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Kontaktieren Sie Westlake Talent Bridge UG in Leipzig. Persönliche Beratung zur Fachkräftevermittlung aus Vietnam." />
+	<meta name="keywords" content="Kontakt, Beratung, Leipzig, Fachkräftevermittlung, Westlake Talent Bridge, Anfrage" />
+	
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Kontakt — Westlake Talent Bridge UG" />
+	<meta property="og:description" content="Kontaktieren Sie uns für eine persönliche Beratung zur Fachkräftevermittlung aus Vietnam." />
+	<meta property="og:image" content="https://westlake-talent.de/img/wtb2.jpeg" />
+	
 	<title>Kontakt — Westlake Talent Bridge UG</title>
-	<link rel="icon" href="./img/logo-monogram.jpeg" />
+	<link rel="icon" type="image/x-icon" href="./favicon_io/favicon.ico" />
+	<link rel="icon" type="image/png" sizes="32x32" href="./favicon_io/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="./favicon_io/favicon-16x16.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="./favicon_io/apple-touch-icon.png">
+	<link rel="manifest" href="./favicon_io/site.webmanifest">
 	<link rel="stylesheet" href="./css/styles.css" />
 </head>
 <body>
 	<header class="site-header">
 		<div class="container">
 			<a href="/" class="logo" aria-label="Westlake Talent Bridge UG">
-				<img src="./img/logo-top.jpeg" alt="Westlake Talent Bridge UG" />
+				<img src="./img/wtb2.jpeg" alt="Westlake Talent Bridge UG" />
 			</a>
 			<nav id="nav" class="nav" aria-label="Hauptnavigation">
 				<ul class="nav__list">
@@ -27,32 +40,79 @@
 	</header>
 
 	<main>
-		<section class="section fade-in">
+		<section class="section section-hero-page fade-in">
 			<div class="container">
 				<h1>Kontaktieren Sie uns</h1>
-				<p>Westlake Talent Bridge UG<br>Musterstraße 1, 04109 Leipzig</p>
-				<p>Telefon: +49 123 456789<br>E‑Mail: info@westlake-talent.de</p>
+				<p class="subtitle">Wir sind für Sie da und freuen uns auf Ihre Nachricht</p>
+			</div>
+		</section>
 
-				<form id="contact-form" class="contact-form">
-					<div class="form-row">
-						<label>Ihr Name*
-							<input type="text" name="name" required />
-						</label>
-						<label>E‑Mail*
-							<input type="email" name="email" required />
-						</label>
+		<section class="section section-contact fade-in">
+			<div class="container">
+				<div class="contact-layout">
+					<div class="contact-info">
+						<h2>Kontaktinformationen</h2>
+						<div class="info-item">
+							<span class="info-icon">🏢</span>
+							<div>
+								<h4>Adresse</h4>
+								<p>Westlake Talent Bridge UG<br>Musterstraße 1<br>04109 Leipzig</p>
+							</div>
+						</div>
+						<div class="info-item">
+							<span class="info-icon">📞</span>
+							<div>
+								<h4>Telefon</h4>
+								<p><a href="tel:+49123456789">+49 123 456789</a></p>
+							</div>
+						</div>
+						<div class="info-item">
+							<span class="info-icon">✉️</span>
+							<div>
+								<h4>E‑Mail</h4>
+								<p><a href="mailto:info@westlake-talent.de">info@westlake-talent.de</a></p>
+							</div>
+						</div>
+						<div class="info-item">
+							<span class="info-icon">🕐</span>
+							<div>
+								<h4>Erreichbarkeit</h4>
+								<p>Mo–Fr: 9:00–18:00 Uhr<br>24/7 Hotline verfügbar</p>
+							</div>
+						</div>
 					</div>
-					<label>Nachricht
-						<textarea name="message" rows="6"></textarea>
-					</label>
-					<button type="submit" class="btn">Senden</button>
-				</form>
 
-				<div class="map-placeholder">
-					<iframe title="Karte" src="https://www.google.com/maps?q=Leipzig&output=embed" loading="lazy"></iframe>
+					<div class="contact-form-wrapper">
+						<h2>Schreiben Sie uns</h2>
+						<div id="form-success" class="form-success" style="display: none;">
+							<div class="success-icon">✓</div>
+							<h3>Vielen Dank für Ihre Nachricht!</h3>
+							<p>Wir haben Ihre Anfrage erhalten und werden uns in Kürze bei Ihnen melden.</p>
+						</div>
+						<form id="contact-form" class="contact-form" action="https://formspree.io/f/mzzjjvql" method="POST">
+							<label>Ihr Name*
+								<input type="text" name="name" required placeholder="Max Mustermann" />
+							</label>
+							<label>E‑Mail*
+								<input type="email" name="email" required placeholder="ihre@email.de" />
+							</label>
+							<label>Telefon
+								<input type="tel" name="phone" placeholder="+49 123 456789" />
+							</label>
+							<label>Nachricht
+								<textarea name="message" rows="6" placeholder="Ihre Nachricht..."></textarea>
+							</label>
+							<button type="submit" class="btn btn-submit">Nachricht senden</button>
+						</form>
+					</div>
 				</div>
 
-				<p>Wir freuen uns auf Ihre Nachricht.</p>
+				<div class="map-section">
+					<h2>Unser Standort</h2>
+					<div class="map-placeholder">
+						<iframe title="Standort Leipzig" src="https://www.google.com/maps?q=Leipzig&output=embed" loading="lazy"></iframe>
+					</div>
+				</div>
 			</div>
 		</section>
 	</main>
