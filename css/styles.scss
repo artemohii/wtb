@@ -80,7 +80,8 @@ img { max-width: 100%; height: auto; display: block; }
 .hero { position: relative; background: transparent; color: var(--white); padding: 0; overflow: hidden; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(11,59,102,0.90) 0%, rgba(11,59,102,0.75) 60%, rgba(245,235,220,0.55) 100%); z-index: 1; }
 .hero__video, .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
-.hero .container { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 100vh; gap: 12px; }
+.hero { min-height: 100vh; min-height: 100dvh; }
+.hero .container { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 100vh; min-height: 100dvh; gap: 12px; }
 .hero h1 { color: var(--white); font-size: 40px; }
 .hero p { color: var(--white); opacity: .95; }
 .cta .btn { display: inline-block; margin-top: 12px; background: var(--blue-mid); color: #FFFFFF; padding: 16px 26px; font-size: 18px; border-radius: 12px; text-decoration: none; transition: background-color .3s, transform .2s; }
