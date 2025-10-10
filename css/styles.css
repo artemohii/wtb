@@ -158,6 +158,8 @@ img {
   width: 36px;
   height: 28px;
   position: relative;
+  cursor: pointer;
+  z-index: 1001;
 }
 
 .burger span {
@@ -167,8 +169,8 @@ img {
   height: 3px;
   background: var(--blue-dark);
   border-radius: 2px;
-  -webkit-transition: 0.2s;
-  transition: 0.2s;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .burger span:nth-child(1) {
@@ -181,24 +183,6 @@ img {
 
 .burger span:nth-child(3) {
   top: 21px;
-}
-
-.burger.active span {
-  background: var(--white);
-}
-
-.burger.active span:nth-child(1) {
-  -webkit-transform: translateY(9px) rotate(45deg);
-          transform: translateY(9px) rotate(45deg);
-}
-
-.burger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.burger.active span:nth-child(3) {
-  -webkit-transform: translateY(-9px) rotate(-45deg);
-          transform: translateY(-9px) rotate(-45deg);
 }
 
 @media (max-width: 992px) {
@@ -253,8 +237,24 @@ img {
     background: var(--blue-hover);
   }
   .burger {
-    display: inline-block;
-    z-index: 1000;
+    display: inline-block !important;
+    z-index: 1001 !important;
+  }
+  button.burger.active span {
+    background: var(--white) !important;
+  }
+  button.burger.active span:nth-child(1) {
+    -webkit-transform: translateY(9px) rotate(45deg) !important;
+            transform: translateY(9px) rotate(45deg) !important;
+    top: 3px !important;
+  }
+  button.burger.active span:nth-child(2) {
+    opacity: 0 !important;
+  }
+  button.burger.active span:nth-child(3) {
+    -webkit-transform: translateY(-9px) rotate(-45deg) !important;
+            transform: translateY(-9px) rotate(-45deg) !important;
+    top: 21px !important;
   }
   body._overflow, html._overflow {
     overflow: hidden;
@@ -267,8 +267,8 @@ img {
   color: var(--white);
   padding: 0;
   overflow: hidden;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100vh;
+  height: 100dvh;
 }
 
 .hero::after {
@@ -306,8 +306,7 @@ img {
       -ms-flex-pack: center;
           justify-content: center;
   text-align: center;
-  min-height: 100vh;
-  min-height: 100dvh;
+  height: 100%;
   gap: 12px;
 }
 
@@ -487,15 +486,9 @@ img {
   background-position: center calc(30% + var(--parallax-y));
   opacity: 0.4;
   z-index: 0;
-  display: none;
   will-change: transform;
 }
 
-@media (min-width: 768px) {
-  .section-akademie::before {
-    display: block;
-  }
-}
 .section-akademie .container {
   position: relative;
   z-index: 1;
@@ -503,25 +496,6 @@ img {
 
 .akademie-content {
   position: relative;
-}
-
-.akademie-content::before {
-  content: "";
-  position: absolute;
-  inset: -20px;
-  background-image: url("../img/people.png");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.3;
-  z-index: -1;
-  border-radius: 16px;
-  display: block;
-}
-
-@media (min-width: 768px) {
-  .akademie-content::before {
-    display: none;
-  }
 }
 .akademie-content {
   max-width: 900px;

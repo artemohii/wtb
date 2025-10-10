@@ -6,23 +6,70 @@ document.addEventListener('DOMContentLoaded', function(){
   const burger = document.getElementById('burger');
   const nav = document.getElementById('nav');
   const html = document.documentElement;
+  
+  // Ensure menu is closed on page load
+  if (nav && burger) {
+    nav.classList.remove('open');
+    burger.classList.remove('active');
+    burger.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('_overflow');
+    html.classList.remove('_overflow');
+  }
+  
   if (burger && nav){
-    burger.addEventListener('click', function(){
-      const open = nav.classList.toggle('open');
-      burger.classList.toggle('active', open);
-      burger.setAttribute('aria-expanded', String(open));
-      document.body.classList.toggle('_overflow', open);
-      html.classList.toggle('_overflow', open);
+    const spans = burger.querySelectorAll('span');
+    
+    // Function to open menu
+    function openMenu() {
+      nav.classList.add('open');
+      burger.classList.add('active');
+      burger.setAttribute('aria-expanded', 'true');
+      document.body.classList.add('_overflow');
+      html.classList.add('_overflow');
+      
+      // Apply cross animation
+      if (spans[0]) spans[0].style.cssText = 'position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; transform: rotate(45deg); background: white;';
+      if (spans[1]) spans[1].style.cssText = 'position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; opacity: 0;';
+      if (spans[2]) spans[2].style.cssText = 'position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; transform: rotate(-45deg); background: white;';
+    }
+    
+    // Function to close menu
+    function closeMenu() {
+      nav.classList.remove('open');
+      burger.classList.remove('active');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('_overflow');
+      html.classList.remove('_overflow');
+      
+      // Reset burger to hamburger
+      if (spans[0]) spans[0].style.cssText = '';
+      if (spans[1]) spans[1].style.cssText = '';
+      if (spans[2]) spans[2].style.cssText = '';
+    }
+    
+    burger.addEventListener('click', function(e){
+      e.stopPropagation();
+      e.preventDefault();
+      
+      if (nav.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
+    
     // Close on link click (mobile)
     nav.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){
-        nav.classList.remove('open');
-        burger.classList.remove('active');
-        burger.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('_overflow');
-        html.classList.remove('_overflow');
+      a.addEventListener('click', function(e){
+        closeMenu();
       });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e){
+      if (nav.classList.contains('open') && !nav.contains(e.target) && !burger.contains(e.target)) {
+        closeMenu();
+      }
     });
   }
 
@@ -60,19 +107,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // Parallax effect for Akademie section
   const akademieSection = document.querySelector('.section-akademie');
-  if (akademieSection && window.innerWidth >= 768) {
+  if (akademieSection) {
     window.addEventListener('scroll', function() {
       const scrolled = window.pageYOffset;
-      const akademieBg = akademieSection.querySelector('.akademie-content');
-      if (akademieBg) {
-        const sectionTop = akademieSection.offsetTop;
-        const sectionHeight = akademieSection.offsetHeight;
-        
-        if (scrolled > sectionTop - window.innerHeight && scrolled < sectionTop + sectionHeight) {
-          const parallaxSpeed = 0.5; // 50% скорости прокрутки
-          const yPos = (scrolled - sectionTop) * parallaxSpeed;
-          akademieSection.style.setProperty('--parallax-y', yPos + 'px');
-        }
+      const sectionTop = akademieSection.offsetTop;
+      const sectionHeight = akademieSection.offsetHeight;
+      
+      if (scrolled > sectionTop - window.innerHeight && scrolled < sectionTop + sectionHeight) {
+        const parallaxSpeed = 0.5; // 50% скорости прокрутки
+        const yPos = (scrolled - sectionTop) * parallaxSpeed;
+        akademieSection.style.setProperty('--parallax-y', yPos + 'px');
       }
     });
   }
