@@ -26,33 +26,55 @@ document.addEventListener('DOMContentLoaded', function(){
       document.body.classList.toggle('_overflow');
       html.classList.toggle('_overflow');
       
-      // Force cross icon styles when menu is open
+      // Toggle cross icon
       const burgerSpans = burger.querySelectorAll('span');
-      console.log('Menu toggled. isOpen:', isOpen, 'Spans found:', burgerSpans.length);
+      const crossIcon = burger.querySelector('.cross-icon');
+      
+      console.log('Menu toggled. isOpen:', isOpen, 'Spans found:', burgerSpans.length, 'Cross icon:', crossIcon);
       
       if (isOpen) {
-        // Cross is always white because menu background is always dark blue
-        const crossColor = '#FFFFFF'; // Back to white
-        
-        // Apply styles immediately
-        const applyCrossStyles = () => {
-          burgerSpans[0].style.cssText = `position: absolute !important; left: 0 !important; right: 0 !important; height: 3px !important; background: ${crossColor} !important; border-radius: 2px !important; transition: all .3s ease !important; transform: translateY(9px) rotate(45deg) !important; top: 3px !important; z-index: 1002 !important; display: block !important;`;
-          burgerSpans[1].style.cssText = `position: absolute !important; left: 0 !important; right: 0 !important; height: 3px !important; background: ${crossColor} !important; border-radius: 2px !important; transition: all .3s ease !important; opacity: 0 !important; top: 12px !important; z-index: 1002 !important; display: block !important;`;
-          burgerSpans[2].style.cssText = `position: absolute !important; left: 0 !important; right: 0 !important; height: 3px !important; background: ${crossColor} !important; border-radius: 2px !important; transition: all .3s ease !important; transform: translateY(-9px) rotate(-45deg) !important; top: 21px !important; z-index: 1002 !important; display: block !important;`;
-          console.log('Cross styles applied. Span 0 style:', burgerSpans[0].style.cssText);
-        };
-        
-        // Apply immediately
-        applyCrossStyles();
-        
-        // Apply again after a short delay to ensure it sticks
-        setTimeout(applyCrossStyles, 10);
-        setTimeout(applyCrossStyles, 50);
+        // Hide burger lines, show cross
+        burgerSpans.forEach(span => {
+          span.style.display = 'none';
+        });
+        if (crossIcon) {
+          crossIcon.style.display = 'block';
+          // Add click listener to cross icon
+          crossIcon.onclick = function(e) {
+            e.stopPropagation();
+            nav.classList.remove('open');
+            burger.classList.remove('active');
+            burger.setAttribute('aria-expanded', 'false');
+            document.body.classList.remove('_overflow');
+            html.classList.remove('_overflow');
+            
+            // Hide cross, show burger lines
+            crossIcon.style.display = 'none';
+            crossIcon.style.opacity = '0';
+            crossIcon.style.animation = 'none';
+            crossIcon.offsetHeight; // Force reflow
+            crossIcon.style.animation = null;
+            burgerSpans.forEach(span => {
+              span.style.display = '';
+            });
+          };
+        }
+        console.log('Cross shown');
       } else {
-        burgerSpans[0].style.cssText = '';
-        burgerSpans[1].style.cssText = '';
-        burgerSpans[2].style.cssText = '';
-        console.log('Burger icon reset');
+        // Show burger lines, hide cross
+        burgerSpans.forEach(span => {
+          span.style.display = '';
+        });
+        if (crossIcon) {
+          crossIcon.style.display = 'none';
+          crossIcon.style.opacity = '0';
+          crossIcon.onclick = null; // Remove click listener
+          // Reset animation
+          crossIcon.style.animation = 'none';
+          crossIcon.offsetHeight; // Force reflow
+          crossIcon.style.animation = null;
+        }
+        console.log('Burger lines shown');
       }
     });
     
@@ -65,11 +87,17 @@ document.addEventListener('DOMContentLoaded', function(){
         document.body.classList.remove('_overflow');
         html.classList.remove('_overflow');
         
+        // Hide cross completely
+        const crossIcon = burger.querySelector('.cross-icon');
+        if (crossIcon) {
+          crossIcon.style.display = 'none';
+        }
+        
         // Reset burger icon
         const burgerSpans = burger.querySelectorAll('span');
-        burgerSpans[0].style.cssText = '';
-        burgerSpans[1].style.cssText = '';
-        burgerSpans[2].style.cssText = '';
+        burgerSpans.forEach(span => {
+          span.style.display = '';
+        });
       });
     });
     
@@ -95,11 +123,38 @@ document.addEventListener('DOMContentLoaded', function(){
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       const targetId = this.getAttribute('href');
+      console.log('Anchor clicked:', targetId);
+      
       if (targetId === '#') return;
       
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
+        
+        console.log('Menu is open:', nav.classList.contains('open'));
+        
+        // Close menu and hide cross if open
+        if (nav && nav.classList.contains('open')) {
+          console.log('Closing menu and hiding cross');
+          nav.classList.remove('open');
+          burger.classList.remove('active');
+          burger.setAttribute('aria-expanded', 'false');
+          document.body.classList.remove('_overflow');
+          html.classList.remove('_overflow');
+          
+          // Hide cross completely
+          const crossIcon = burger.querySelector('.cross-icon');
+          if (crossIcon) {
+            crossIcon.style.display = 'none';
+            console.log('Cross hidden');
+          }
+          
+          // Show burger lines
+          const burgerSpans = burger.querySelectorAll('span');
+          burgerSpans.forEach(span => {
+            span.style.display = '';
+          });
+        }
         
         const headerHeight = document.querySelector('.site-header').offsetHeight;
         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;

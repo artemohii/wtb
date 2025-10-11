@@ -185,6 +185,142 @@ img {
   top: 21px;
 }
 
+/* Cross icon styles */
+.cross-icon {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  z-index: 9999;
+  pointer-events: auto;
+  cursor: pointer;
+  opacity: 0;
+  -webkit-animation: crossFadeIn 0.3s ease-out forwards;
+          animation: crossFadeIn 0.3s ease-out forwards;
+  transition: -webkit-transform 0.2s ease;
+  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, -webkit-transform 0.2s ease;
+}
+
+.cross-icon:hover {
+  -webkit-transform: translate(-50%, -50%) scale(1.1);
+          transform: translate(-50%, -50%) scale(1.1);
+}
+
+.cross-line {
+  position: absolute;
+  width: 32px;
+  height: 4px;
+  background: #FFFFFF;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.cross-line-1 {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
+  -webkit-animation: crossLine1 0.4s ease-out 0.1s both;
+          animation: crossLine1 0.4s ease-out 0.1s both;
+}
+
+.cross-line-2 {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+  -webkit-animation: crossLine2 0.4s ease-out 0.2s both;
+          animation: crossLine2 0.4s ease-out 0.2s both;
+}
+
+.cross-icon:hover .cross-line {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  background: #F5EBDC;
+}
+
+@-webkit-keyframes crossFadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.5);
+            transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes crossFadeIn {
+  from {
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0.5);
+            transform: translate(-50%, -50%) scale(0.5);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate(-50%, -50%) scale(1);
+            transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@-webkit-keyframes crossLine1 {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg) scale(0);
+            transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
+            transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes crossLine1 {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg) scale(0);
+            transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg) scale(1);
+            transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes crossLine2 {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg) scale(0);
+            transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+            transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes crossLine2 {
+  from {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg) scale(0);
+            transform: translate(-50%, -50%) rotate(0deg) scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+            transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+    opacity: 1;
+  }
+}
+
 @media (max-width: 992px) {
   .nav {
     position: fixed;
