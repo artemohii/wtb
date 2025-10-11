@@ -71,10 +71,6 @@ img { max-width: 100%; height: auto; display: block; }
 	.nav__list a.contact-btn { background: var(--blue-mid); color: var(--white); padding: 14px 28px; font-size: 24px; border-radius: 12px; }
 	.nav__list a.contact-btn:hover { background: var(--blue-hover); }
 	.burger { display: inline-block !important; z-index: 1001 !important; }
-	.burger.active span { background: var(--white) !important; }
-	.burger.active span:nth-child(1){ transform: translateY(9px) rotate(45deg) !important; } 
-	.burger.active span:nth-child(2){ opacity: 0 !important; } 
-	.burger.active span:nth-child(3){ transform: translateY(-9px) rotate(-45deg) !important; }
 	body._overflow, html._overflow { overflow: hidden; }
 }
 
@@ -87,6 +83,17 @@ img { max-width: 100%; height: auto; display: block; }
 .hero p { color: var(--white); opacity: .95; }
 .cta .btn { display: inline-block; margin-top: 12px; background: var(--blue-mid); color: #FFFFFF; padding: 16px 26px; font-size: 18px; border-radius: 12px; text-decoration: none; transition: background-color .3s, transform .2s; }
 .cta .btn:hover { background: var(--blue-hover); transform: translateY(-2px); }
+@media (max-width: 768px){ 
+	.hero { height: 100vh; height: 100dvh; padding-top: 80px; } 
+	.hero h1 { font-size: 28px; }
+	.hero p { font-size: 14px; }
+	.cta .btn { padding: 12px 20px; font-size: 16px; }
+	.hero .container { gap: 8px; padding-top: 20px; }
+}
+@media (max-width: 375px){ 
+	.hero { padding-top: 100px; }
+	.hero .container { padding-top: 30px; }
+}
 
 /* Hero Stats */
 .hero-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; max-width: 800px; width: 100%; }
@@ -95,7 +102,11 @@ img { max-width: 100%; height: auto; display: block; }
 .stat-number::after { content: '+'; }
 .stat-item:nth-child(3) .stat-number::after { content: '%'; }
 .stat-label { font-size: 16px; color: rgba(255,255,255,0.9); font-weight: 400; }
-@media (max-width: 768px){ .hero-stats { grid-template-columns: 1fr; gap: 24px; } }
+@media (max-width: 768px){ 
+	.hero-stats { grid-template-columns: 1fr; gap: 16px; margin-top: 30px; } 
+	.stat-number { font-size: 32px; margin-bottom: 4px; }
+	.stat-label { font-size: 14px; }
+}
 
 /* Sections */
 .section { padding: 56px 0; }

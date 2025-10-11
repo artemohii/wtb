@@ -17,58 +17,76 @@ document.addEventListener('DOMContentLoaded', function(){
   }
   
   if (burger && nav){
-    const spans = burger.querySelectorAll('span');
-    
-    // Function to open menu
-    function openMenu() {
-      nav.classList.add('open');
-      burger.classList.add('active');
-      burger.setAttribute('aria-expanded', 'true');
-      document.body.classList.add('_overflow');
-      html.classList.add('_overflow');
-      
-      // Apply cross animation
-      if (spans[0]) spans[0].style.cssText = 'position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; transform: rotate(45deg); background: white;';
-      if (spans[1]) spans[1].style.cssText = 'position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; opacity: 0;';
-      if (spans[2]) spans[2].style.cssText = 'position: absolute; left: 0; right: 0; top: 12px; height: 3px; border-radius: 2px; transform: rotate(-45deg); background: white;';
-    }
-    
-    // Function to close menu
-    function closeMenu() {
-      nav.classList.remove('open');
-      burger.classList.remove('active');
-      burger.setAttribute('aria-expanded', 'false');
-      document.body.classList.remove('_overflow');
-      html.classList.remove('_overflow');
-      
-      // Reset burger to hamburger
-      if (spans[0]) spans[0].style.cssText = '';
-      if (spans[1]) spans[1].style.cssText = '';
-      if (spans[2]) spans[2].style.cssText = '';
-    }
-    
     burger.addEventListener('click', function(e){
       e.stopPropagation();
-      e.preventDefault();
+      nav.classList.toggle('open');
+      burger.classList.toggle('active');
+      const isOpen = nav.classList.contains('open');
+      burger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      document.body.classList.toggle('_overflow');
+      html.classList.toggle('_overflow');
       
-      if (nav.classList.contains('open')) {
-        closeMenu();
+      // Force cross icon styles when menu is open
+      const burgerSpans = burger.querySelectorAll('span');
+      console.log('Menu toggled. isOpen:', isOpen, 'Spans found:', burgerSpans.length);
+      
+      if (isOpen) {
+        // Cross is always white because menu background is always dark blue
+        const crossColor = '#FFFFFF'; // Back to white
+        
+        // Apply styles immediately
+        const applyCrossStyles = () => {
+          burgerSpans[0].style.cssText = `position: absolute !important; left: 0 !important; right: 0 !important; height: 3px !important; background: ${crossColor} !important; border-radius: 2px !important; transition: all .3s ease !important; transform: translateY(9px) rotate(45deg) !important; top: 3px !important; z-index: 1002 !important; display: block !important;`;
+          burgerSpans[1].style.cssText = `position: absolute !important; left: 0 !important; right: 0 !important; height: 3px !important; background: ${crossColor} !important; border-radius: 2px !important; transition: all .3s ease !important; opacity: 0 !important; top: 12px !important; z-index: 1002 !important; display: block !important;`;
+          burgerSpans[2].style.cssText = `position: absolute !important; left: 0 !important; right: 0 !important; height: 3px !important; background: ${crossColor} !important; border-radius: 2px !important; transition: all .3s ease !important; transform: translateY(-9px) rotate(-45deg) !important; top: 21px !important; z-index: 1002 !important; display: block !important;`;
+          console.log('Cross styles applied. Span 0 style:', burgerSpans[0].style.cssText);
+        };
+        
+        // Apply immediately
+        applyCrossStyles();
+        
+        // Apply again after a short delay to ensure it sticks
+        setTimeout(applyCrossStyles, 10);
+        setTimeout(applyCrossStyles, 50);
       } else {
-        openMenu();
+        burgerSpans[0].style.cssText = '';
+        burgerSpans[1].style.cssText = '';
+        burgerSpans[2].style.cssText = '';
+        console.log('Burger icon reset');
       }
     });
     
     // Close on link click (mobile)
     nav.querySelectorAll('a').forEach(function(a){
       a.addEventListener('click', function(e){
-        closeMenu();
+        nav.classList.remove('open');
+        burger.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('_overflow');
+        html.classList.remove('_overflow');
+        
+        // Reset burger icon
+        const burgerSpans = burger.querySelectorAll('span');
+        burgerSpans[0].style.cssText = '';
+        burgerSpans[1].style.cssText = '';
+        burgerSpans[2].style.cssText = '';
       });
     });
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e){
       if (nav.classList.contains('open') && !nav.contains(e.target) && !burger.contains(e.target)) {
-        closeMenu();
+        nav.classList.remove('open');
+        burger.classList.remove('active');
+        burger.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('_overflow');
+        html.classList.remove('_overflow');
+        
+        // Reset burger icon
+        const burgerSpans = burger.querySelectorAll('span');
+        burgerSpans[0].style.cssText = '';
+        burgerSpans[1].style.cssText = '';
+        burgerSpans[2].style.cssText = '';
       }
     });
   }
@@ -82,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function(){
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         e.preventDefault();
+        
         const headerHeight = document.querySelector('.site-header').offsetHeight;
         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
         
